@@ -14,8 +14,13 @@ frontend/
 ├── public/
 │   ├── ...  
 ├── src/
+│   ├── assets/
+│   │   ├── ...
 │   ├── components/
 │   │   ├── NavBar/
+│   │   │   ├── index.jsx
+│   │   │   ├── style.css
+│   │   ├── ImageUploader/
 │   │   │   ├── index.jsx
 │   │   │   ├── style.css
 │   │   └── ...
@@ -24,10 +29,8 @@ frontend/
 │   │   │   ├── index.jsx (todo)
 │   │   │   ├── style.css (todo)
 │   │   └── ...
-│   ├── assets/
-│   │   └── ...
-│   ├── App.js
-│   ├── index.js
+│   ├── App.jsx
+│   ├── App.css
 │   └── ...
 └── ...
 ```
