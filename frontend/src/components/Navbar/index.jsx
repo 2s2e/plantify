@@ -3,12 +3,13 @@ import './style.css';
 import navbarLogo from '../../assets/navbar-logo.svg';
 
 const NavBar = () => {
+
   return (
     <div className="nav-bar">
       <ul className="nav-menu">
         <div className="buttons-container">
             <button > Upload an image</button>
-            <img src={navbarLogo} alt="Plantify Logo" width="50" onClick={() => console.log('hi')}/>
+            <img src={navbarLogo} alt="sidebar logo" width="50" />
         </div>
 
         {/* Add more navigation items as needed */}
