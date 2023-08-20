@@ -1,5 +1,5 @@
 .nav-bar {
-    background-color: #333;
+    background-color: #A0CA92;
     color: #fff;
     width: 20%;
     height: 100%;
@@ -7,7 +7,7 @@
     left: 0;
     top: 0;
     padding: 20px;
-    display: flex;
+    display: block;
     flex-direction: column;
   }
   
