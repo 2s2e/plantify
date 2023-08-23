@@ -5,8 +5,23 @@ import React from 'react';
 export function ImageUploader() {
     // drag state
     const [dragActive, setDragActive] = React.useState(false);
+    const [file, setFile] = React.useState(null);
     // ref
     const inputRef = React.useRef(null);
+
+    const handleFiles = async function(files) {
+      // handle files
+      setFile(files[0]);
+
+      const response = await fetch('/upload', {
+        method: 'POST',
+        body: file
+      });
+
+      const data = await response.json();
+      console.log(data.message);
+      
+    };
     
     // handle drag events
     const handleDrag = function(e) {
@@ -25,7 +40,7 @@ export function ImageUploader() {
       e.stopPropagation();
       setDragActive(false);
       if (e.dataTransfer.files && e.dataTransfer.files[0]) {
-        // handleFiles(e.dataTransfer.files);
+        handleFiles(e.dataTransfer.files);
       }
     };
     
@@ -33,7 +48,7 @@ export function ImageUploader() {
     const handleChange = function(e) {
       e.preventDefault();
       if (e.target.files && e.target.files[0]) {
-        // handleFiles(e.target.files);
+        handleFiles(e.target.files);
       }
     };
     
