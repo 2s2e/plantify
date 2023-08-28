@@ -49,9 +49,11 @@ export function ImageUploader() {
           <div>
             <button className="upload-button" onClick={onButtonClick}>Upload a file</button>
             <p className='button-subtitle'> or drop a file</p>
-          </div> 
+          </div>
+
         </label>
         { dragActive && <div id="drag-file-element" onDragEnter={handleDrag} onDragLeave={handleDrag} onDragOver={handleDrag} onDrop={handleDrop}></div> }
       </form>
+
     );
   };

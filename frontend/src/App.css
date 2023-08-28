@@ -46,7 +46,16 @@ body {
   align-items: center;
   margin-left: auto;
   margin-right: auto;
-  padding-left: 30%;
+  padding-left: 20%;
+}
+
+.main-content.closed {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: -50%;
 }
 
 
