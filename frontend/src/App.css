@@ -1,11 +1,24 @@
+
+@font-face {
+   /* this isn't working :( */
+  font-family: 'Nunito';
+  src: url('https://fonts.googleapis.com/css2?family=Nunito&display=swap');
+}
+
 body {
   background-color: #D4E9CE;
+  font-family: 'Nunito', sans-serif; 
 }
+
+
 #root {
   margin: 0 auto;
+  margin-top: 0;
+  height: 800px;
   padding: 2rem;
   text-align: center;
 }
+
 
 .logo {
   height: 6em;
@@ -13,26 +26,69 @@ body {
   will-change: filter;
   transition: filter 300ms;
 }
+
 .logo:hover {
   filter: drop-shadow(0 0 2em #646cffaa);
 }
 
-.main-content {
+
+.app-container {
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
+}
+
+
+
+.main-content.opened {
+  display: flex;
+  flex-direction: column;
   align-items: center;
-  padding-left: 20%;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 30%;
+}
+
+
+.header {
+  display: flex;
+  justify-content: center; 
+  color: #58A68B;
+}
+
+
+.content-uploader {
+  display: flex;
+  flex-direction: row; 
+  align-items: flex-start; 
+  margin-top: 95px;
+  justify-content: space-between;
 }
 
 .content {
   flex: 1;
-  padding: 20px;
+  padding: 10px;
+  text-align: center;
+  font-size: 20px;
 }
 
 .image-uploader {
   flex-shrink: 0;
-  padding: 20px;
+  padding: 10px;
 }
+
+p, .subtitle1 {
+  color: #081F00;
+  font-size: 20px;
+  margin-bottom: 0;
+}
+
+p, .subtitle2 {
+  color: #081F00;
+  font-size: 45px;
+  margin-top: 0;
+}
+
 
 .navbar-button {
   position: absolute;
@@ -44,10 +100,3 @@ body {
   cursor: pointer;
 }
 
-h1 {
-    font-family: 'Nunito', sans-serif;
-  font-weight: 700;
-  font-size: 50px;
-  line-height: 68.2px;
-  text-align: center;
-}
