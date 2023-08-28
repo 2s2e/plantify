@@ -1,13 +1,14 @@
 // drag drop file component
 import './style.css'; 
 import React from 'react';
-
 export function ImageUploader() {
     // drag state
     const [dragActive, setDragActive] = React.useState(false);
     // ref
     const inputRef = React.useRef(null);
     
+   
+
     // handle drag events
     const handleDrag = function(e) {
       e.preventDefault();
@@ -34,6 +35,7 @@ export function ImageUploader() {
       e.preventDefault();
       if (e.target.files && e.target.files[0]) {
         // handleFiles(e.target.files);
+
       }
     };
     
