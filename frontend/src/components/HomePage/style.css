@@ -1,11 +1,10 @@
-
 .header {
     display: flex;
     justify-content: center; 
     color: #58A68B;
   }
   
-  
+
   .content-uploader {
     display: flex;
     flex-direction: row; 

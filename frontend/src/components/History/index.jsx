@@ -1,6 +1,6 @@
 import React from 'react';
 import historyButton from "../../assets/history-item-button.svg"
-import styles from './styles.css'
+import './styles.css'
 {/* THIS IS A STUB*/ }
 export function History() {
     return(

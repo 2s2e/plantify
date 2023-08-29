@@ -1,12 +1,15 @@
 // drag drop file component
 import './style.css'; 
 import React from 'react';
+
+
 export function ImageUploader() {
     // drag state
     const [dragActive, setDragActive] = React.useState(false);
     const [file, setFile] = React.useState(null);
     // ref
     const inputRef = React.useRef(null);
+    
 
     const handleFiles = async function(files) {
       // handle files
@@ -19,6 +22,7 @@ export function ImageUploader() {
 
       const data = await response.json();
       console.log(data.message);
+
       
     };
     
@@ -41,6 +45,7 @@ export function ImageUploader() {
       if (e.dataTransfer.files && e.dataTransfer.files[0]) {
         handleFiles(e.dataTransfer.files);
       }
+      
     };
     
     // triggers when file is selected with click

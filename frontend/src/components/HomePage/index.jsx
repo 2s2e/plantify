@@ -4,7 +4,10 @@ import { ImageUploader } from '../ImageUploader'
 import plantifyLogo from '../../assets/plantify-logo.png' 
 import plantifyHeader from '../../assets/plantify-header.png'
 
-function HomePage() {
+function HomePage({ onUploadSubmit }) {
+  const handleUploadClick = () => {
+    onUploadSubmit(); // Trigger the function to show ResultPage
+  };
   return (
     <div>
       {/* header wrapper */}
@@ -23,7 +26,9 @@ function HomePage() {
         {/* wrapper for the image uploader component */}
         <div className="image-uploader">
           <ImageUploader />
+          <button onClick={handleUploadClick} >Submit</button>
         </div>
+
       </div>
     </div>
   );
