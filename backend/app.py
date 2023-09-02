@@ -2,11 +2,22 @@ from flask import Flask, jsonify, render_template, redirect, request, session, u
 from flask_pymongo import PyMongo
 from bson import ObjectId
 from werkzeug.security import generate_password_hash, check_password_hash
+import os
+import tensorflow as tf
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'key123'  # Change this later
 app.config['MONGO_URI'] = 'mongodb+srv://aramshankar:A1k2h4i8l.163264@cluster0.aybp86y.mongodb.net/plantify'
 mongo = PyMongo(app)
+
+print(os.getcwd())
+model = tf.keras.models.load_model('backend\dummy_model.h5')
+
+def preprocess_image(image):
+    image = tf.image.decode_jpeg(image, channels=3)
+    image = tf.image.resize(image, [180, 180])
+    image /= 255.0
+    return image
 
 @app.route('/upload', methods=['POST'])
 def upload_file():
