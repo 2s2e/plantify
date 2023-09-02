@@ -15,3 +15,7 @@ To ensure all developers working on the same project use the same library versio
 
 ### Running server
 `python app.py`
+By default, the server will run on port 5000 and be accessible at http://localhost:5000.
+
+To add a new user to the database, navigate to http://localhost:5000/register.
+To log in with existing credentials and access the user's dashboard, visit http://localhost:5000/login.
