@@ -1,11 +1,30 @@
+
+@font-face {
+   /* this isn't working :( */
+  font-family: 'Nunito';
+  src: url('https://fonts.googleapis.com/css2?family=Nunito&display=swap');
+}
+
 body {
   background-color: #D4E9CE;
+  font-family: 'Nunito', sans-serif;
+  margin: 0;
+  padding: 0;
+  overflow: auto; 
+
 }
+
+
+
 #root {
   margin: 0 auto;
+  margin-top: 0;
+  height: 800px;
   padding: 2rem;
   text-align: center;
+  background-color: #D4E9CE;
 }
+
 
 .logo {
   height: 6em;
@@ -13,26 +32,41 @@ body {
   will-change: filter;
   transition: filter 300ms;
 }
+
 .logo:hover {
   filter: drop-shadow(0 0 2em #646cffaa);
 }
 
-.main-content {
+
+.app-container {
   display: flex;
+  background-color: #D4E9CE;
+  flex-direction: column;
   justify-content: space-between;
+}
+
+
+
+.main-content.opened {
+  background-color: #D4E9CE;
+  display: flex;
+  flex-direction: column;
   align-items: center;
+  margin-left: auto;
+  margin-right: auto;
   padding-left: 20%;
 }
 
-.content {
-  flex: 1;
-  padding: 20px;
+.main-content.closed {
+  background-color: #D4E9CE;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: -50%;
 }
 
-.image-uploader {
-  flex-shrink: 0;
-  padding: 20px;
-}
 
 .navbar-button {
   position: absolute;
@@ -44,10 +78,3 @@ body {
   cursor: pointer;
 }
 
-h1 {
-    font-family: 'Nunito', sans-serif;
-  font-weight: 700;
-  font-size: 50px;
-  line-height: 68.2px;
-  text-align: center;
-}

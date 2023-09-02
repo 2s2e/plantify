@@ -2,11 +2,29 @@
 import './style.css'; 
 import React from 'react';
 
+
 export function ImageUploader() {
     // drag state
     const [dragActive, setDragActive] = React.useState(false);
+    const [file, setFile] = React.useState(null);
     // ref
     const inputRef = React.useRef(null);
+    
+
+    const handleFiles = async function(files) {
+      // handle files
+      setFile(files[0]);
+
+      const response = await fetch('/upload', {
+        method: 'POST',
+        body: file
+      });
+
+      const data = await response.json();
+      console.log(data.message);
+
+      
+    };
     
     // handle drag events
     const handleDrag = function(e) {
@@ -25,8 +43,9 @@ export function ImageUploader() {
       e.stopPropagation();
       setDragActive(false);
       if (e.dataTransfer.files && e.dataTransfer.files[0]) {
-        // handleFiles(e.dataTransfer.files);
+        handleFiles(e.dataTransfer.files);
       }
+      
     };
     
     // triggers when file is selected with click
@@ -48,9 +67,12 @@ export function ImageUploader() {
         <label id="label-file-upload" htmlFor="input-file-upload" className={dragActive ? "drag-active" : "" }>
           <div>
             <button className="upload-button" onClick={onButtonClick}>Upload a file</button>
-          </div> 
+            <p className='button-subtitle'> or drop a file</p>
+          </div>
+
         </label>
         { dragActive && <div id="drag-file-element" onDragEnter={handleDrag} onDragLeave={handleDrag} onDragOver={handleDrag} onDrop={handleDrop}></div> }
       </form>
+
     );
   };

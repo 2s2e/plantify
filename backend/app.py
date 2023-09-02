@@ -1,19 +1,34 @@
 from flask import Flask, jsonify, render_template, redirect, request, session, url_for, flash
 from flask_pymongo import PyMongo
 from bson import ObjectId
-from flask_session import Session
-from pymongo import MongoClient
 from werkzeug.security import generate_password_hash, check_password_hash
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = 'your_secret_key'  # Change this to a secret key
-app.config['MONGO_URI'] = 'mongodb+srv://aramshankar:A1k2h4i8l.163264@cluster0.aybp86y.mongodb.net/?retryWrites=true&w=majority'
+app.config['SECRET_KEY'] = 'key123'  # Change this later
+app.config['MONGO_URI'] = 'mongodb+srv://aramshankar:A1k2h4i8l.163264@cluster0.aybp86y.mongodb.net/plantify'
 mongo = PyMongo(app)
+
+@app.route('/upload', methods=['POST'])
+def upload_file():
+    if 'image' not in request.files:
+        return jsonify(message="No image found", success=False)
+    
+    file = request.files['image']
+
+    if file.filename == '':
+        return jsonify(message="No image found", success=False)
+
+    if file:
+        file.save(file.filename)
+
+        image_array = preprocess_image(file)
+        predictions = model.predict(image_array)
+        return jsonify(predictions=predictions.tolist(), success=True)
 
 # Define a simple route
 @app.route('/')
 def hello_world():
-    return jsonify(message="Hello, world!")
+    return redirect(url_for('register'))
 
 # User registration route
 @app.route('/register', methods=['GET', 'POST'])
@@ -66,7 +81,7 @@ def dashboard():
         user_id = session['user_id']
         user = mongo.db.users.find_one({'_id': ObjectId(user_id)})
         if user:
-            return "Welcome to the dashboard, {}".format(user['username'])
+            return "Welcome to Plantify, {}".format(user['username'])
     
     flash('You must be logged in to access this page.', 'danger')
     return redirect(url_for('login'))

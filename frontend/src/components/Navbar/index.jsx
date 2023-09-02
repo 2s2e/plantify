@@ -1,7 +1,7 @@
 import React from 'react';
 import './style.css';
 import navbarLogo from '../../assets/navbar-logo.svg'; // the dark green version
-
+import {History} from '../History'
 // the component only expands when navBarVisible state is set to true 
 const NavBar = ({ onNavbarButtonClick, navbarVisible }) => {
 
@@ -19,11 +19,15 @@ const NavBar = ({ onNavbarButtonClick, navbarVisible }) => {
               </button>
             </>
           ) : (
+            // add the history stuff to this one 
             <>
               <button className='upload-button closed-navbar'> Upload an image</button>
               <button className="navbar-button closed-button" onClick={onNavbarButtonClick}>
                 <img src={navbarLogo} alt="sidebar logo" width="50" />
               </button>
+              <div className='history-component'>
+                <History/>
+              </div>
             </>
           )}
         </div>
