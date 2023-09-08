@@ -7,6 +7,7 @@ import navBarLogo from './assets/navbar-logo1.svg' // this is the navbar icon wi
 import plantifyHeader from './assets/plantify-header.png'
 import HomePage from './components/HomePage'
 import ResultPage from './components/ResultPage'; 
+
 function App() {
   const [navbarVisible, setNavbarVisible] = useState(true);
   const [showResults, setShowResults] = useState(false);

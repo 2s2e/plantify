@@ -6,6 +6,18 @@ import plantifyHeader from '../../assets/plantify-header.png'
 
 function HomePage({ onUploadSubmit }) {
   const handleUploadClick = () => {
+    fetch('http://127.0.0.1:5000')
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      return response.json();
+    })
+    .then((data) => {
+      console.log(data)
+    })
+
+    
     onUploadSubmit(); // Trigger the function to show ResultPage
   };
   return (

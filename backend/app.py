@@ -4,14 +4,17 @@ from bson import ObjectId
 from werkzeug.security import generate_password_hash, check_password_hash
 import os
 import tensorflow as tf
+from flask import Flask
+from flask_cors import CORS
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'key123'  # Change this later
 app.config['MONGO_URI'] = 'mongodb+srv://aramshankar:A1k2h4i8l.163264@cluster0.aybp86y.mongodb.net/plantify'
 mongo = PyMongo(app)
+CORS(app)
 
 print(os.getcwd())
-model = tf.keras.models.load_model('backend\dummy_model.h5')
+# model = tf.keras.models.load_model('backend\dummy_model.h5')
 
 def preprocess_image(image):
     image = tf.image.decode_jpeg(image, channels=3)
@@ -39,7 +42,7 @@ def upload_file():
 # Define a simple route
 @app.route('/')
 def hello_world():
-    return redirect(url_for('register'))
+    return jsonify(message= 'successfully called hello_world')
 
 # User registration route
 @app.route('/register', methods=['GET', 'POST'])
