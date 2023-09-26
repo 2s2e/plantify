@@ -14,18 +14,21 @@ export function ImageUploader() {
     const handleFiles = async function(files) {
       // handle files
       setFile(files[0]);
-
-      const response = await fetch('/upload', {
+      const formData = new FormData();
+      formData.append('file', files[0]);
+      fetch('http://localhost:5000/upload', {
         method: 'POST',
-        body: file
-      });
-
-      const data = await response.json();
-      console.log(data.message);
-
-      
+        body: formData
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          console.log('response: ', data)
+          if (data.success) {
+            const predictions = data.predictions;
+            console.log('predictions: ', predictions)
+          }
+        })
     };
-    
     // handle drag events
     const handleDrag = function(e) {
       e.preventDefault();
@@ -52,7 +55,8 @@ export function ImageUploader() {
     const handleChange = function(e) {
       e.preventDefault();
       if (e.target.files && e.target.files[0]) {
-        // handleFiles(e.target.files);
+        console.log('handle change')
+        handleFiles(e.target.files);
       }
     };
     
