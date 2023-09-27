@@ -5,42 +5,59 @@ from werkzeug.security import generate_password_hash, check_password_hash
 import os
 import tensorflow as tf
 from flask import Flask
-from flask_cors import CORS
+from flask_cors import CORS, cross_origin
+
+import PIL.Image
+
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'key123'  # Change this later
 app.config['MONGO_URI'] = 'mongodb+srv://aramshankar:A1k2h4i8l.163264@cluster0.aybp86y.mongodb.net/plantify'
 mongo = PyMongo(app)
+model = tf.keras.models.load_model('model169.h5')
+
 CORS(app)
 
 print(os.getcwd())
-# model = tf.keras.models.load_model('backend\dummy_model.h5')
 
-def preprocess_image(image):
-    image = tf.image.decode_jpeg(image, channels=3)
-    image = tf.image.resize(image, [180, 180])
+def preprocess_image(image, target_size=(180, 180)):
+    '''
+    Expected input: A tensor of dtype "string", representing the image contents.
+    Resize and add batch dimension to output the desire image size for model.
+    '''
+    image = tf.io.decode_jpeg(image, channels=3)
+    image = tf.image.resize(image, target_size)
     image /= 255.0
-    return image
+    return tf.expand_dims(image, axis=0)
 
-@app.route('/upload', methods=['POST'])
+@app.route('/upload', methods=['POST', 'GET'])
 def upload_file():
-    if 'image' not in request.files:
-        return jsonify(message="No image found", success=False)
-    
-    file = request.files['image']
-
-    if file.filename == '':
-        return jsonify(message="No image found", success=False)
+    '''
+    Expected requests body: A file with key "file" in the request.files dictionary
+    save the file to local dir (currently) and call model prediction
+    Expected response: A json object with the predictions
+    '''
+    print('request.files', request.files)
+    ##TODO: add checks and error handling
+    file = request.files['file']
 
     if file:
-        file.save(file.filename)
-
-        image_array = preprocess_image(file)
+        file.save('image.jpg')
+        img_file = tf.io.read_file('image.jpg')
+        image_array = preprocess_image(img_file)
+        print('image_array', image_array.shape)
+        print('model expected shape', model.layers[0].input_shape)
         predictions = model.predict(image_array)
-        return jsonify(predictions=predictions.tolist(), success=True)
+        print('predictions', predictions)
+        return jsonify(\
+            message="Image saved, Prediction made",\
+            predictions = predictions.tolist(),\
+            success=True
+        )
+
 
 # Define a simple route
-@app.route('/')
+@app.route('/', methods=['GET'])
 def hello_world():
     return jsonify(message= 'successfully called hello_world')
 
