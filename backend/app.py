@@ -59,7 +59,7 @@ def upload_file():
 # Define a simple route
 @app.route('/', methods=['GET'])
 def hello_world():
-    return jsonify(message= 'successfully called hello_world')
+    return redirect(url_for('login'))
 
 # User registration route
 @app.route('/register', methods=['GET', 'POST'])

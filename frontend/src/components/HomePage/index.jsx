@@ -22,11 +22,7 @@ function HomePage({ onUploadSubmit }) {
   };
   return (
     <div>
-      {/* header wrapper */}
-      <div className="header">
-        <img src={plantifyHeader} alt="Plantify Header" width="300" />
-      </div>
-
+ 
       {/* uploader + logo container */}
       <div className="content-uploader">
         <div className="content">

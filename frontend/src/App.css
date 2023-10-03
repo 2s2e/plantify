@@ -25,6 +25,11 @@ body {
   background-color: #D4E9CE;
 }
 
+.home-button {
+  display: flex;
+  justify-content: center; 
+  color: #58A68B;
+}
 
 .logo {
   height: 6em;

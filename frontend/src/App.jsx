@@ -19,11 +19,22 @@ function App() {
   const handleUploadSubmit = () => {
     setShowResults(true); // Set the state to show ResultPage
   };
+
+  const goToHomePage = () => {
+    setShowResults(false); // Set the state to show HomePage
+  };
+
   return (
     <div className="app-container">
       <button className="navbar-button" onClick={toggleNavbar}>
         <img src={navBarLogo} alt="NavBarLogo" width="50" />
       </button>
+      
+      {/* Make the Plantify header act as a home button */}
+      <button className="home-button" onClick={goToHomePage} style={{ border: 'none', background: 'transparent', padding: 0 }}>
+        <img src={plantifyHeader} alt="plantifyHeader" width="300" />
+      </button>
+      
       {navbarVisible && <NavBar onNavbarButtonClick={toggleNavbar} />}
       {/* Main content wrapper, checks the state of the navbar */}
       <div className={`main-content ${navbarVisible ? 'opened' : 'closed'}`}>
