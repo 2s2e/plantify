@@ -1,12 +1,14 @@
 // drag drop file component
 import './style.css'; 
 import React from 'react';
-
+import { MyContext } from '../../MyContext.jsx';
 
 export function ImageUploader() {
     // drag state
     const [dragActive, setDragActive] = React.useState(false);
     const [file, setFile] = React.useState(null);
+
+    const {plantImage, setPlantImage, plantName, setPlantName} = React.useContext(MyContext);
     // ref
     const inputRef = React.useRef(null);
     
@@ -25,7 +27,11 @@ export function ImageUploader() {
           console.log('response: ', data)
           if (data.success) {
             const predictions = data.predictions;
+            const plant_name = data.plant;
             console.log('predictions: ', predictions)
+            console.log('plant name: ', plant_name)
+            setPlantName(plant_name);
+            setPlantImage(URL.createObjectURL(files[0]));
           }
         })
     };

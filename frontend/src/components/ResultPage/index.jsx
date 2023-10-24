@@ -1,26 +1,21 @@
 import React from 'react';
 import plantifyHeader from '../../assets/plantify-header.png';
 import './style.css';
+import { useContext } from 'react';
+import { MyContext } from '../../MyContext.jsx';
 
-function ResultPage({ navbarVisible }) {
+function ResultPage({ navbarVisible}) {
+  const {plantImage, setPlantImage, plantName, setPlantName} = React.useContext(MyContext);
   return (
     <div className='root'>
       <div className={`results-container ${navbarVisible ? 'navbar-open' : 'navbar-closed'}`}>
-        <div className='input-image'></div>
+        <div className='input-image'>
+          <img src={plantImage} alt='plant' width='150' />
+        </div>
         <div className='results-heading'>
-          <h1> Possible Plants</h1>
+          <h1>{plantName}</h1>
         </div>
-        <div className={`result-images ${navbarVisible ? 'navbar-open' : 'navbar-closed'}`}>
-          <div className={`item ${navbarVisible ? 'navbar-open' : 'navbar-closed'}`}>
-            <p className='plant-label'> Potential Plant 1</p>
-          </div>
-          <div className={`item ${navbarVisible ? 'navbar-open' : 'navbar-closed'}`}>
-            <p className='plant-label'> Potential Plant 2</p>
-          </div>
-          <div className={`item ${navbarVisible ? 'navbar-open' : 'navbar-closed'}`}>
-            <p className='plant-label'> Potential Plant 3</p>
-          </div>
-        </div>
+        
       </div>
     </div>
   );
