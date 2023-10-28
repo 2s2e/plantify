@@ -26,7 +26,8 @@ app.config[
     "MONGO_URI"
 ] = "mongodb+srv://aramshankar:A1k2h4i8l.163264@cluster0.aybp86y.mongodb.net/plantify"
 mongo = PyMongo(app)
-model = tf.keras.models.load_model("model169_3.h5")
+
+model = tf.keras.models.load_model("dummy_model.h5")
 
 CORS(app)
 print(os.getcwd())
@@ -81,6 +82,7 @@ def upload_file():
             message="Image saved, Prediction made: " + str(plant_names[max_index]),
             predictions=predictions.tolist(),
             success=True,
+            plant=plant_names[max_index],
         )
 
 
