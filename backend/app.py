@@ -27,7 +27,9 @@ app.config[
 ] = "mongodb+srv://aramshankar:A1k2h4i8l.163264@cluster0.aybp86y.mongodb.net/plantify"
 mongo = PyMongo(app)
 
-model = tf.keras.models.load_model("dummy_model.h5")
+model = tf.keras.models.load_model(
+    "dummy_model.h5"
+)  # temporary change, since the actual model is too big to fit
 
 CORS(app)
 print(os.getcwd())
