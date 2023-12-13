@@ -28,7 +28,7 @@ app.config[
 mongo = PyMongo(app)
 
 model = tf.keras.models.load_model(
-    "dummy_model.h5"
+    "model169_3.h5"
 )  # temporary change, since the actual model is too big to fit
 
 CORS(app)
