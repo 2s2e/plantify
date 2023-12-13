@@ -36,6 +36,7 @@ print(os.getcwd())
 
 plant_names = []
 
+
 # load data from species_name.json into a list
 with open("species_name.json") as f:
     data = json.load(f)
