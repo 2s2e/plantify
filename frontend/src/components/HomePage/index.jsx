@@ -13,9 +13,7 @@ function HomePage({ onUploadSubmit }) {
       }
       return response.json();
     })
-    .then((data) => {
-      console.log(data)
-    })
+
 
     
     onUploadSubmit(); // Trigger the function to show ResultPage
@@ -34,6 +32,7 @@ function HomePage({ onUploadSubmit }) {
         {/* wrapper for the image uploader component */}
         <div className="image-uploader">
           <ImageUploader />
+          <br></br>
           <button onClick={handleUploadClick} >Submit</button>
         </div>
 
